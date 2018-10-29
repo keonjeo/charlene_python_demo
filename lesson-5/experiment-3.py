@@ -74,3 +74,64 @@ card_list = [
     ('梅花', 'Q'),
     ('梅花', 'K')
 ]
+
+
+def calculate(card_list):
+    sum = 0
+    for card in card_list:
+        # print(card)
+        # print('+++++++++++++++++++++++++++++++++')
+        # print(card[1])
+        # print('+++++++++++++++++++++++++++++++++')
+        card_number = transfer(card[1])
+        sum += card_number
+    return sum
+
+
+def transfer(poke):
+    # print('+++++++++++++++++++++++++++++++++')
+    # print(poke)
+    # print('+++++++++++++++++++++++++++++++++')
+    if poke == 'A':
+        return 1
+    elif poke == 'J':
+        return 0.5
+    elif poke == 'Q':
+        return 0.5
+    elif poke == 'K':
+        return 0.5
+    else:
+        return int(poke)
+
+
+def player(name, chip, card_list, bets):
+    number_of_cards = calculate(card_list)
+    want_more = needs_more_cards(number_of_cards)
+    print("========================================")
+    print("名字: ", name)
+    print("筹码: ", chip)
+    print("要牌标识符: ", want_more)
+    print("牌列表: ", card_list)
+    print("牌点数: ", number_of_cards)
+    print("下注数: ", bets)
+    print("========================================")
+
+
+def needs_more_cards(number_of_cards):
+    want_more = False
+    if number_of_cards < 10:
+        want_more = True
+    return want_more
+
+
+random_cards = random.sample(card_list, 52)
+
+player1_cards = random_cards[0:2]
+player2_cards = random_cards[2:4]
+player3_cards = random_cards[4:6]
+player4_cards = random_cards[6:8]
+
+player1 = player('张三', 100, player1_cards, 18)
+player2 = player('李四', 100, player2_cards, 13)
+player3 = player('小明', 100, player3_cards, 15)
+player4 = player('小红', 100, player4_cards, 10)
